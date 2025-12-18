@@ -1,0 +1,29 @@
+* { box-sizing: border-box; font-family: Inter, Arial, sans-serif; }
+
+body { margin: 0; background: #0b0e14; color: #e6e6eb; }
+
+.card { background: #151922; border-radius: 12px; padding: 16px; margin-bottom: 15px; }
+
+.auth { max-width: 400px; margin: 50px auto; }
+.auth input { width: 100%; margin-bottom: 10px; padding: 10px; background: #0f1320; border: none; color: white; border-radius: 8px; }
+.auth button { width: 100%; padding: 10px; background: #3f8cff; border: none; color: white; border-radius: 8px; cursor: pointer; }
+
+.app { display: none; max-width: 1200px; margin: auto; padding: 20px; }
+
+.top { text-align: center; }
+.add-task { display: flex; gap: 10px; }
+.add-task input { flex:1; padding:10px; background:#0f1320; border:none; color:white; border-radius:8px; }
+.add-task button { background:#3f8cff; border:none; color:white; padding:10px 16px; border-radius:8px; cursor:pointer; }
+
+.dashboard { display:grid; grid-template-columns:2fr 1.5fr 1fr; gap:15px; }
+
+.task-panel ul { list-style:none; padding:0; }
+.task-panel li { background:#0f1320; padding:10px; border-radius:8px; margin-bottom:8px; cursor:pointer; }
+.completed { text-decoration:line-through; opacity:0.6; }
+
+.calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+.day { background:#0f1320; padding:6px; border-radius:6px; font-size:12px; cursor:pointer; }
+.day.has-task { border:1px solid #3f8cff; }
+
+.analytics canvas { background:#0f1320; border-radius:8px; margin-bottom:10px; padding:5px; }
+#pomodoro-btn { width:100%; padding:10px; background:#ff5c5c; border:none; color:white; border-radius:8px; cursor:pointer; }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blitzit MVP</title>
+
+<!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth" class="card auth">
+  <h3>Login</h3>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button id="loginBtn">Login / Sign Up</button>
+</div>
+
+<!-- MAIN APP -->
+<div class="app">
+  <header class="top">
+    <h1>Blitzit MVP</h1>
+    <p>Focus. Finish. Repeat.</p>
+  </header>
+
+  <section class="card add-task">
+    <input id="title" placeholder="Task title">
+    <input id="note" placeholder="Notes">
+    <input type="datetime-local" id="schedule">
+    <button id="add">Add Task</button>
+  </section>
+
+  <section class="dashboard">
+
+    <div class="card task-panel">
+      <h3>Tasks</h3>
+      <ul id="tasks"></ul>
+    </div>
+
+    <div class="card calendar">
+      <div class="calendar-header">
+        <button id="prevMonth">◀</button>
+        <h3 id="monthYear"></h3>
+        <button id="nextMonth">▶</button>
+      </div>
+      <div id="calendar" class="calendar-grid"></div>
+    </div>
+
+    <div class="card analytics">
+      <h3>Analytics</h3>
+      <canvas id="taskChart"></canvas>
+      <canvas id="focusChart"></canvas>
+
+      <hr>
+
+      <h3>Pomodoro</h3>
+      <p id="pomodoro-status">Idle</p>
+      <button id="pomodoro-btn">Start Focus</button>
+    </div>
+
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
