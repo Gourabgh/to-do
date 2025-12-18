@@ -93,10 +93,25 @@ async function loadTasks() {
     }
 }
 
-function renderTasks() {
+function renderTasks(filterByWeek = false) {
     const ul = document.getElementById("tasks");
     ul.innerHTML = "";
-    tasks.forEach(t => {
+    
+    let displayTasks = tasks;
+
+    if (filterByWeek) {
+        const today = new Date();
+        const nextWeek = new Date();
+        nextWeek.setDate(today.getDate() + 7);
+
+        displayTasks = tasks.filter(t => {
+            if (!t.schedule) return false;
+            const taskDate = new Date(t.schedule);
+            return taskDate >= today && taskDate <= nextWeek;
+        });
+    }
+
+    displayTasks.forEach(t => {
         const li = document.createElement("li");
         li.className = t.completed ? "completed" : "";
         li.innerHTML = `<strong>${t.title}</strong><br><small>${t.note || ""}</small>`;
@@ -166,3 +181,30 @@ document.getElementById("pomodoro-btn").onclick = () => {
 
 // Start
 checkUser();
+
+
+// --- NOTIFY-PRO LOGIC ---
+document.getElementById("enableNotify").onclick = async () => {
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+        alert("Pro Notifications Enabled!");
+    } else {
+        alert("Permission denied. Check browser settings.");
+    }
+};
+
+// Check for task reminders every 60 seconds
+setInterval(() => {
+    const now = new Date();
+    // Format current time to match 'YYYY-MM-DDTHH:MM' (datetime-local format)
+    const currentTimeStr = now.toISOString().slice(0, 16); 
+
+    tasks.forEach(t => {
+        if (t.schedule === currentTimeStr && !t.completed) {
+            new Notification("Task Reminder!", { 
+                body: t.title,
+                icon: 'https://cdn-icons-png.flaticon.com/512/906/906334.png' 
+            });
+        }
+    });
+}, 60000);
