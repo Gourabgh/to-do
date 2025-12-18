@@ -1,68 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Blitzit MVP</title>
-
-<!-- Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourab's To-Do Tasker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- AUTH -->
 <div id="auth" class="card auth">
-  <h3>Login</h3>
-  <input id="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-  <button id="loginBtn">Login / Sign Up</button>
+    <h3>Project Login</h3>
+    <p style="font-size: 12px; color: #888;">Enter email/pass to sync tasks</p>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button id="loginBtn">Login / Sign Up</button>
 </div>
 
-<!-- MAIN APP -->
-<div class="app">
-  <header class="top">
-    <h1>Blitzit MVP</h1>
-    <p>Focus. Finish. Repeat.</p>
-  </header>
+<div class="app" style="display: none;">
+    <header class="top">
+        <h1>My Tasks</h1>
+        <p>Stay productive, Gourab.</p>
+    </header>
 
-  <section class="card add-task">
-    <input id="title" placeholder="Task title">
-    <input id="note" placeholder="Notes">
-    <input type="datetime-local" id="schedule">
-    <button id="add">Add Task</button>
-  </section>
+    <section class="card add-task">
+        <input id="title" placeholder="What needs to be done?">
+        <input id="note" placeholder="Add a note...">
+        <input type="datetime-local" id="schedule">
+        <button id="add">Add Task</button>
+    </section>
 
-  <section class="dashboard">
+    <section class="dashboard">
+        <div class="card task-panel">
+            <h3>Active Tasks</h3>
+            <ul id="tasks"></ul>
+        </div>
 
-    <div class="card task-panel">
-      <h3>Tasks</h3>
-      <ul id="tasks"></ul>
-    </div>
+        <div class="card calendar">
+            <div class="calendar-header">
+                <button id="prevMonth">◀</button>
+                <h3 id="monthYear"></h3>
+                <button id="nextMonth">▶</button>
+            </div>
+            <div id="calendar" class="calendar-grid"></div>
+        </div>
 
-    <div class="card calendar">
-      <div class="calendar-header">
-        <button id="prevMonth">◀</button>
-        <h3 id="monthYear"></h3>
-        <button id="nextMonth">▶</button>
-      </div>
-      <div id="calendar" class="calendar-grid"></div>
-    </div>
-
-    <div class="card analytics">
-      <h3>Analytics</h3>
-      <canvas id="taskChart"></canvas>
-      <canvas id="focusChart"></canvas>
-
-      <hr>
-
-      <h3>Pomodoro</h3>
-      <p id="pomodoro-status">Idle</p>
-      <button id="pomodoro-btn">Start Focus</button>
-    </div>
-
-  </section>
+        <div class="card analytics">
+            <h3>Analytics</h3>
+            <canvas id="taskChart"></canvas>
+            <hr>
+            <h3>Pomodoro</h3>
+            <p id="pomodoro-status">Idle</p>
+            <button id="pomodoro-btn">Start Focus</button>
+        </div>
+    </section>
 </div>
 
 <script src="script.js"></script>
